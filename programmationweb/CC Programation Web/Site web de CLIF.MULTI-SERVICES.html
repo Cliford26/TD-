@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIF.MULTI-SERVICES - Jacmel</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CONTRAINTE CSS 2 : Application de la police Google Fonts globalement */
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; 
+            background-color: #fafafa; 
+        }
+
+        /* CONTRAINTE CSS 5 : Palette de couleurs (Hexadécimal, RGB et RGBA) */
+        :root {
+            --primary-yellow: #F6DD1D;       /* Jaune officiel tiré de votre logo (Hex) */
+            --secondary-blue: #0087CC;       /* Bleu officiel tiré de votre logo (Hex) */
+            --accent-red: #E21C26;           /* Rouge éclatant (Hex) */
+            --pure-white: rgb(255, 255, 255); /* Blanc pur (RGB) */
+            --dark-overlay: rgba(0, 40, 70, 0.85); /* Bleu nuit transparent pour le Hero (RGBA) */
+            --footer-bg: rgba(15, 23, 42, 0.98);   /* Fond de pied de page ultra sombre (RGBA) */
+        }
+
+        /* CONTRAINTE CSS 4 : Gestion des espacements, marges et paddings */
+        h1, h2, h3, p, ul, figure {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- En-tête (Header) & Logo --- */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-img {
+            height: 85px; /* Ajustement précis de la hauteur de votre logo */
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            color: var(--secondary-blue);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* --- Barre de Navigation --- */
+        /* CONTRAINTE CSS 3 : Mise en page de la navigation avec Flexbox */
+        nav {
+            background-color: var(--secondary-blue);
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 12px 10px;
+            text-decoration: none;
+            color: var(--pure-white);
+            font-weight: bold;
+            font-size: 1.05em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-yellow);
+        }
+
+        /* --- Section Accueil (Hero) --- */
+        /* CONTRAINTE CSS 6 : Utilisation d'un dégradé linéaire (linear-gradient) */
+        .hero {
+            background-image: linear-gradient(135deg, var(--dark-overlay), rgba(246, 221, 29, 0.4)), url('C:/Users/User/Pictures/WhatsApp Image 2026-06-11 at 1.17.27 PM.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: var(--pure-white);
+            text-align: center;
+            padding: 90px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.6em;
+            color: var(--pure-white);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            font-size: 1.25em;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* --- Section Nos Services --- */
+        #services h2, #galerie h2 {
+            font-size: 2.2em;
+            color: #222;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        #services h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* CONTRAINTE CSS 3 : Grille de mise en page moderne avec CSS Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: var(--pure-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            border-top: 5px solid var(--secondary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card.highlight {
+            border-top-color: var(--accent-red);
+        }
+
+        .service-card h3 {
+            color: #111;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* --- Section Galerie Photos --- */
+        /* CONTRAINTE CSS 3 : Layout mixte combinant CSS Grid et Flexbox */
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .gallery-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .gallery-showcase figure {
+            background-color: var(--pure-white);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .gallery-showcase img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .gallery-side-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .gallery-side-grid figure {
+            background-color: var(--pure-white);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .gallery-side-grid img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover; /* Recadrage propre des visuels */
+            border-radius: 6px;
+            display: block;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* --- En-encart latéral informatif (Aside) --- */
+        aside.info-banner {
+            background-color: #fffde7;
+            border-left: 6px solid var(--primary-yellow);
+            padding: 25px;
+            border-radius: 4px;
+            margin-top: 30px;
+            grid-column: 1 / -1; /* Prend toute la largeur sous la galerie */
+        }
+
+        aside.info-banner p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* --- Pied de page (Footer) --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--pure-white);
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 30px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6em;
+            color: var(--primary-yellow);
+            margin-bottom: 10px;
+        }
+
+        address {
+            font-style: normal;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .footer-contact h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--pure-white);
+        }
+
+        .phone-btn {
+            display: inline-block;
+            background-color: var(--secondary-blue);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .phone-btn:hover {
+            background-color: #006699;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        /* --- Media Queries : Responsivité Smartphone et Tablette --- */
+        @media (max-width: 850px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .gallery-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .footer-layout {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="C:\Users\User\Pictures\WhatsApp Image 2026-05-07 at 7.03.09 PM.jpeg" alt="Logo officiel de CLIF Multi-Services Jacmel" class="logo-img">
+            <h1>CLIF.MULTI-SERVICES</h1>
+            <p>Votre partenaire de confiance pour toutes vos exigences quotidiennes.</p>
+            
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Nos Services</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero">
+            <h2>L'excellence au service de Jacmel</h2>
+            <p>Établi fièrement à Jacmel, dans le département du Sud-Est d'Haïti, CLIF Multi-Services met à votre disposition des prestations multisectorielles haut de gamme. Que ce soit pour sublimer un événement, entretenir votre propriété ou prendre soin de vous, notre équipe intervient avec rigueur, passion et professionnalisme.</p>
+        </section>
+
+        <section id="services">
+            <h2>Notre Large Gamme de Services</h2>
+            
+            <div class="services-grid">
+                
+                <article class="service-card highlight">
+                    <h3>🎁 Service de Surprise</h3>
+                    <p>Célébrez vos proches de manière unique et mémorable. Nous concevons avec passion des bouquets de fleurs éternelles, des agencements créatifs de fleurs avec argent, des cartes personnalisées haut de gamme ainsi que des paniers surprises garnis sur mesure pour toutes vos grandes occasions.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>⚡ Service en Électricité</h3>
+                    <p>Bénéficiez d'une expertise technique sécurisée pour tous vos chantiers. Nous assurons la pose complète d'installations électriques domestiques, la recherche de pannes de réseaux et la maintenance préventive de vos équipements.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🔧 Plomberie et Carrelage</h3>
+                    <p>Donnez de la valeur à vos intérieurs. Nos artisans prennent en charge la pose de carrelages modernes et design, les raccordements hydrauliques ainsi que la maintenance sanitaire avec une finition soignée.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>💇 Coupe de Cheveux à Domicile</h3>
+                    <p>Le confort d'un salon de coiffure professionnel, directement chez vous. Profitez de coupes modernes et de soins capillaires personnalisés sur rendez-vous, adaptés à toute la famille.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🍳 Service de Cuisine</h3>
+                    <p>Savourez une cuisine haïtienne et internationale authentique. Nous préparons des plats savoureux et raffinés pour votre quotidien ou pour assurer le service traiteur lors de vos événements privés.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🖼️ Tableau Personnalisé et Dessin</h3>
+                    <p>Immortalisez vos plus beaux souvenirs. Nos artistes locaux réalisent sur commande des dessins artistiques d'une grande précision et des tableaux décoratifs personnalisés selon vos inspirations.</p>
+                </article>
+
+                <article class="service-card">
+                    <h3>🧼 Produits Chimiques de Nettoyage</h3>
+                    <p>Garantissez la propreté de vos locaux grâce à notre propre gamme de produits d'entretien de qualité supérieure : savon liquide concentré, désinfectants puissants, parfums d'ambiance, assouplissants Suavitel et vinaigre ménager.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="galerie">
+            <h2>Galerie de nos Services et Réalisations</h2>
+            
+            <div class="gallery-wrapper">
+                
+                <div class="gallery-showcase">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 11.57.41 AM.jpeg" alt="Table de cadeaux d'honneur préparée par CLIF Multi-Services pour la fête des mères à Jacmel">
+                        <figcaption>Table d'honneur exclusive apprêtée pour notre événement spécial Fête des Mères</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 11.57.42 AM.jpeg" alt="L'équipe de CLIF Multi-Services réunie autour des mamans honorées lors de l'événement">
+                        <figcaption>Célébration chaleureuse en compagnie des bénéficiaires de nos paniers surprises</figcaption>
+                    </figure>
+                </div>
+
+                 <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.23 PM (2).jpeg">
+                        <figcaption>Tableau PVC</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.23 PM (1).jpeg">
+                        <figcaption>Tableau Home</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.26 PM (3).jpeg">
+                        <figcaption>Livraison Surprise</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.25 PM (1).jpeg">
+                        <figcaption>Peiture murale</figcaption>
+                    </figure>
+                </div>
+
+                  <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.26 PM (4).jpeg">
+                        <figcaption>Carte personnalisées</figcaption>
+                    </figure>
+                </div>
+
+                 <div class="gallery-side-grid">
+                    <figure>
+                        <img src="C:\Users\User\Pictures\WhatsApp Image 2026-06-11 at 12.37.23 PM (3).jpeg">
+                        <figcaption>Bidon personnalisées</figcaption>
+                    </figure>
+                </div>
+
+                
+
+                <aside class="info-banner">
+                    <p><strong>Engagement qualité :</strong> Chez <strong>CLIF.MULTI-SERVICES</strong>, chaque projet est traité avec la plus grande attention. Les sourires immortalisés ci-dessus témoignent de la rigueur que nous investissons dans la préparation de vos livraisons surprises. Qu'il s'agisse de plomberie, d'art visuel ou d'événements familiaux, nous plaçons la satisfaction client au centre de nos priorités.</p>
+                </aside>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-layout">
+            
+            <div class="footer-brand">
+                <h3>CLIF.MULTI-SERVICES</h3>
+                <address>
+                    Siège social principal<br>
+                    Jacmel, Département du Sud-Est<br>
+                    Haïti
+                </address>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Une urgence ou une commande ?</h4>
+                <p>Notre équipe est à votre écoute pour planifier une intervention ou réserver un pack surprise.</p>
+                <a href="tel:+50944707471" class="phone-btn">📞 contacter le : +509 4470-7471</a>
+                <a href="https://chat.whatsapp.com/CzyiNMrQfVgCcBjk7RXvxQ" target="_blank" class="whatsapp-btn">💬 Rejoindre notre groupe WhatsApp</a>
+            </div>
+
+        </div>
+        
+        <p class="copyright">CLIF.MULTI-SERVICES.</p>
+    </footer>
+
+</body>
+</html>
+
+```
